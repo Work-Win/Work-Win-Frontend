@@ -1,12 +1,18 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+// Copyright ©2024 ranalimayadunne, All rights reserved.
+import React from "react";
+import Welcome from "./routes/Welcome";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+        </Routes>
+      </Router>
+    </>
+  );
 }
 
 export default App;
