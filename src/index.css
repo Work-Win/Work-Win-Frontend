@@ -41,6 +41,16 @@
   cursor: pointer;
 }
 
+.btnLoginHoverEffect {
+  transition: 0.3s;
+}
+
+.btnLoginHoverEffect:hover {
+  transition: 0.3s;
+  background-color: #5ab3d7;
+  cursor: pointer;
+}
+
 .loginLogo {
   width: 120px;
   height: auto;
