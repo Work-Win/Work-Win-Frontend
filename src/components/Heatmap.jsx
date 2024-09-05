@@ -5,23 +5,19 @@ const Heatmap = () => {
   const [activityData, setActivityData] = useState([]);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [today, setToday] = useState(""); // Store today's day
+  const [today, setToday] = useState("");
 
   useEffect(() => {
-    // Calculate today's date
     const currentDate = new Date();
     const todayDate = currentDate.toISOString().slice(0, 10); // Format as YYYY-MM-DD
 
-    // Adjust the day of the week to treat Monday as day 0
-    let dayOfWeek = currentDate.getDay(); // Get the day of the week (0 = Sunday, 1 = Monday, etc.)
-    dayOfWeek = (dayOfWeek + 6) % 7; // Shift so Monday becomes day 0, Sunday becomes day 6
+    // Get the current day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+    const dayOfWeek = currentDate.getDay();
 
-    setToday(dayOfWeek); // Set the adjusted day of the week
+    setToday(dayOfWeek); // Set the current day of the week
 
-    // Set the end date as today
     const endDate = todayDate;
 
-    // Calculate the date one year ago
     const oneYearAgo = new Date(currentDate);
     oneYearAgo.setFullYear(currentDate.getFullYear() - 1);
     const startDate = oneYearAgo.toISOString().slice(0, 10); // Format as YYYY-MM-DD
@@ -39,10 +35,7 @@ const Heatmap = () => {
   }, []);
 
   return (
-    <section
-      className="mt-16 h-52 w-full flex flex-row justify-center items-center"
-      //   style={{ backgroundColor: "#040e2c" }}
-    >
+    <section className="mt-16 h-52 w-full flex flex-row justify-center items-center">
       <div className="flex">
         <span className="flex flex-col justify-around py-2 text-black text-xs text-right pr-3">
           <span>Mon</span>
@@ -53,7 +46,7 @@ const Heatmap = () => {
           startDate={startDate}
           endDate={endDate}
           dataValues={activityData}
-          today={today} // Pass today's adjusted day of the week
+          today={today}
         />
       </div>
     </section>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom"; // Use react-router-dom
+import { Link } from "react-router-dom";
 
 const HeatmapCalendar = ({ startDate, endDate, today }) => {
   const [activityData, setActivityData] = useState([]);
@@ -19,16 +19,22 @@ const HeatmapCalendar = ({ startDate, endDate, today }) => {
   const daysInMonth =
     Math.ceil((endingDate - startingDate) / (1000 * 60 * 60 * 24)) + 1;
 
-  // Create the calendar grid, but offset the first day based on the current day of the week
-  const calendarGrid = Array.from({ length: daysInMonth + today }, (_, i) => {
-    if (i < today) {
-      return null; // Add empty cells before the first day to align with the current day of the week
-    } else {
-      const date = new Date(startingDate);
-      date.setDate(startingDate.getDate() + (i - today)); // Subtract the offset to adjust for alignment
-      return date.toISOString().slice(0, 10);
+  // Get the weekday of the starting date (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+  const startDayOfWeek = startingDate.getDay();
+
+  // Adjust grid creation to take startDayOfWeek into account
+  const calendarGrid = Array.from(
+    { length: daysInMonth + startDayOfWeek },
+    (_, i) => {
+      if (i < startDayOfWeek) {
+        return null; // Filler for the days before the start date
+      } else {
+        const date = new Date(startingDate);
+        date.setDate(startingDate.getDate() + (i - startDayOfWeek));
+        return date.toISOString().slice(0, 10);
+      }
     }
-  });
+  );
 
   const highestValue = activityData?.reduce(
     (a, b) => Math.max(a, b.count),
@@ -62,7 +68,7 @@ const HeatmapCalendar = ({ startDate, endDate, today }) => {
     >
       {calendarGrid.map((day, index) => {
         if (day === null) {
-          return <div key={index} className="w-1 h-1"></div>; // Render an empty cell for alignment
+          return <div key={index} className="w-1 h-1"></div>;
         }
 
         const activityCount =
@@ -72,10 +78,10 @@ const HeatmapCalendar = ({ startDate, endDate, today }) => {
 
         return (
           <Link
-            to={`/posts?date=${day}`} // Use 'to' for React Router
-            key={day} // Added key to each element
+            to={`/posts?date=${day}`}
+            key={day}
             className="w-2.5 h-2.5 rounded cursor-pointer"
-            title={`${activityCount} Posts on ${day}`}
+            title={`${activityCount} Points on ${day}`}
             style={{
               backgroundColor: color,
             }}
