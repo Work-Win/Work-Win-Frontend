@@ -120,7 +120,7 @@ const Signup = () => {
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <a
           onClick={welcomeNavigate}
-          className="cursor-pointer flex items-center mb-6 text-4xl font-bold text-[#0693c9] dark:text-[#0693c9]"
+          className="cursor-pointer flex items-center mb-6 text-4xl font-medium text-[#0693c9] dark:text-[#0693c9]"
         >
           <img className="w-20 h-auto mx-4" src={Logo} alt="logo" />
           WORK & WIN

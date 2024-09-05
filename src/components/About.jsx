@@ -9,7 +9,7 @@ const About = () => {
 
   const userGuidePageNavigate = () => {
     navigate(
-      "https://github.com/iServeSL/iServeSL-Docs/blob/main/iServeSL%20-%20User%20Guide.md"
+      "https://github.com/Work-Win/Work-Win-Documentation/blob/main/User%20Guide.md"
     );
   };
 

@@ -61,12 +61,12 @@
 .dashboard {
   display: flex;
   gap: 20px;
-  background: #241000;
+  background: #102a43;
   padding: 22px;
 }
 
 .dashboard--content {
-  background: #ffebda;
+  background: #d9e9f4;
   flex: 1;
   border-radius: 20px;
   padding: 2rem;
