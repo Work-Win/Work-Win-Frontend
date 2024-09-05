@@ -74,3 +74,10 @@
   gap: 1.5rem;
   justify-content: space-between;
 }
+
+.cardHeatmap {
+  background-color: #bcc6d1;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
