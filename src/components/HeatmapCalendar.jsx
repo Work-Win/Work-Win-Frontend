@@ -48,11 +48,11 @@ const HeatmapCalendar = ({ startDate, endDate, today }) => {
   const getColorFromIntensity = (intensity) => {
     const colorCodes = [
       "#FFEEEE",
-      "#FFCCCC",
-      "#FFAAAA",
-      "#FF8888",
-      "#FF6666",
-      "#FF4444",
+      "#B2EBF2",
+      "#80DEEA",
+      "#4DD0E1",
+      "#26C6DA",
+      "#00ACC1",
     ];
     const colorIndex = Math.min(
       Math.floor(intensity * colorCodes.length),

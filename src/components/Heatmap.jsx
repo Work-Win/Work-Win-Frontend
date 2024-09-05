@@ -10,6 +10,19 @@ const Heatmap = () => {
   const [rank, setRank] = useState(""); // State for rank
 
   useEffect(() => {
+    const fetchData = () => {
+      fetch("/api/user-activity")
+        .then((res) => res.json())
+        .then((data) => {
+          setActivityData(data.userActivity);
+          setPoints(data.points); // Assume API returns points
+          setRank(data.rank); // Assume API returns rank
+        })
+        .catch((err) =>
+          console.error("There has been an error while fetching data ", err)
+        );
+    };
+
     const currentDate = new Date();
     const todayDate = currentDate.toISOString().slice(0, 10); // Format as YYYY-MM-DD
 
@@ -26,42 +39,35 @@ const Heatmap = () => {
     setStartDate(startDate);
     setEndDate(endDate);
 
-    // Fetch activity data, points, and rank from the server
-    fetch("/api/user-activity")
-      .then((res) => res.json())
-      .then((data) => {
-        setActivityData(data.userActivity);
-        setPoints(data.points); // Assume API returns points
-        setRank(data.rank); // Assume API returns rank
-      })
-      .catch((err) =>
-        console.error("There has been an error while fetching data ", err)
-      );
+    fetchData(); // Initial fetch
+    const intervalId = setInterval(fetchData, 60000); // Update every 60 seconds
+
+    return () => clearInterval(intervalId); // Cleanup interval on component unmount
   }, []);
 
   return (
-    <section className="mt-16 w-full flex flex-col items-center">
+    <section className="cardHeatmap mt-16 w-full flex flex-col items-center">
       {/* Points and Rank in a Single Row Above Heatmap */}
       <div className="w-full flex justify-between items-center mb-4 px-8">
         {/* Points on the left */}
         <div
           className="text-xl font-semibold ml-20"
-          style={{ color: "#040e2c" }}
+          style={{ color: "#035270" }}
         >
-          Points: 542
+          Total Points Earned: {points}
         </div>
 
         {/* Rank on the right */}
         <div
-          className="text-xl font-semibold mr-11"
-          style={{ color: "#040e2c" }}
+          className="text-xl font-semibold mr-20"
+          style={{ color: "#035270" }}
         >
-          Rank: 2
+          Rank: {rank}
         </div>
       </div>
 
       {/* Heatmap */}
-      <div className="flex">
+      <div className="flex mb-2">
         <span className="flex flex-col justify-around py-2 text-black text-xs text-right pr-3">
           <span>Mon</span>
           <span>Wed</span>
