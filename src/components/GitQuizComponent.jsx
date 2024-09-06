@@ -1,3 +1,4 @@
+// Copyright ©2024 ranalimayadunne, All rights reserved.
 import React, { useState } from "react";
 
 const QuizComponent = ({ onSubmit }) => {

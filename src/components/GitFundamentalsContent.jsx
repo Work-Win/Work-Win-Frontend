@@ -1,3 +1,4 @@
+// Copyright ©2024 ranalimayadunne, All rights reserved.
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GrChapterNext, GrChapterPrevious } from "react-icons/gr";
