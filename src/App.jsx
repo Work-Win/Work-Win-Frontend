@@ -10,6 +10,7 @@ import EditProfile from "./routes/EditProfile";
 import OnlineCourses from "./routes/OnlineCourses";
 import GitFundamentals from "./routes/GitFundamentals";
 import Leaderboard from "./routes/Leaderboard";
+import Achievements from "./routes/Achievements";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
             element={<GitFundamentals />}
           />
           <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/my-achievements" element={<Achievements />} />
         </Routes>
       </Router>
     </>
