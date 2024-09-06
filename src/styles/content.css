@@ -421,3 +421,11 @@
   margin: 20px auto;
   max-width: 2000px;
 }
+
+.leader-board-member {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.leader-board-member:hover {
+  transform: translateY(-3px);
+}
