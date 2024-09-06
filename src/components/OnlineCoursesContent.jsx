@@ -1,4 +1,4 @@
-// Copyright ©2024 SachinAkash01, All rights reserved.
+// Copyright ©2024 ranalimayadunne, All rights reserved.
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Git from "../assets/git.jpg";
@@ -15,38 +15,98 @@ import Java from "../assets/java.jpg";
 import Testing from "../assets/testing.jpg";
 import "../styles/content.css";
 
-const courses = [
-  { id: 1, image: Git, title: "Git Fundamentals", points: 20 },
-  {
-    id: 2,
-    image: Microservices,
-    title: "Microservices Architecture",
-    points: 30,
-  },
-  {
-    id: 3,
-    image: ResponsiveWeb,
-    title: "Responsive Web Development",
-    points: 80,
-  },
-  { id: 4, image: QAB, title: "Quality Assurance Basics", points: 20 },
-  { id: 5, image: NetBasics, title: "Computer Networking Basics", points: 20 },
-  {
-    id: 6,
-    image: CloudArchi,
-    title: "Cloud Computing Architecture",
-    points: 60,
-  },
-  { id: 7, image: OOP, title: "Object Oriented Programming", points: 70 },
-  { id: 8, image: Python, title: "Getting started with Python", points: 40 },
-  { id: 9, image: Security, title: "Internet History & Security", points: 20 },
-  { id: 10, image: aws, title: "Cloud Computing with AWS", points: 100 },
-  { id: 11, image: Java, title: "Introduction to Java", points: 40 },
-  { id: 12, image: Testing, title: "Software Testing", points: 50 },
-];
-
 const FeedbackContent = () => {
   const navigate = useNavigate();
+
+  const courses = [
+    {
+      id: 1,
+      image: Git,
+      title: "Git Fundamentals",
+      points: 40,
+      onClick: () => navigate("/dashboard/online-courses/git-fundamentals"),
+    },
+    {
+      id: 2,
+      image: Microservices,
+      title: "Microservices Architecture",
+      points: 30,
+      onClick: () =>
+        navigate("/dashboard/online-courses/microservices-architecture"),
+    },
+    {
+      id: 3,
+      image: ResponsiveWeb,
+      title: "Responsive Web Development",
+      points: 80,
+      onClick: () => navigate("/dashboard/online-courses/responsive-web"),
+    },
+    {
+      id: 4,
+      image: QAB,
+      title: "Quality Assurance Basics",
+      points: 20,
+      onClick: () => navigate("/dashboard/online-courses/qa-basics"),
+    },
+    {
+      id: 5,
+      image: NetBasics,
+      title: "Computer Networking Basics",
+      points: 20,
+      onClick: () => navigate("/dashboard/online-courses/networking-basics"),
+    },
+    {
+      id: 6,
+      image: CloudArchi,
+      title: "Cloud Computing Architecture",
+      points: 60,
+      onClick: () =>
+        navigate("/dashboard/online-courses/cloud-computing-architecture"),
+    },
+    {
+      id: 7,
+      image: OOP,
+      title: "Object Oriented Programming",
+      points: 100,
+      onClick: () => navigate("/dashboard/online-courses/oop"),
+    },
+    {
+      id: 8,
+      image: Python,
+      title: "Getting started with Python",
+      points: 40,
+      onClick: () => navigate("/dashboard/online-courses/python"),
+    },
+    {
+      id: 9,
+      image: Security,
+      title: "Internet History & Security",
+      points: 20,
+      onClick: () =>
+        navigate("/dashboard/online-courses/internet-history-security"),
+    },
+    {
+      id: 10,
+      image: aws,
+      title: "Cloud Computing with AWS",
+      points: 100,
+      onClick: () => navigate("/dashboard/online-courses/aws"),
+    },
+    {
+      id: 11,
+      image: Java,
+      title: "Introduction to Java",
+      points: 40,
+      onClick: () => navigate("/dashboard/online-courses/java"),
+    },
+    {
+      id: 12,
+      image: Testing,
+      title: "Software Testing",
+      points: 50,
+      onClick: () => navigate("/dashboard/online-courses/software-testing"),
+    },
+  ];
 
   const dashboardNavigate = () => {
     navigate("/dashboard");
@@ -64,7 +124,7 @@ const FeedbackContent = () => {
       </div>
       <div className="course-container">
         {courses.map((course) => (
-          <div key={course.id} className="course-card">
+          <div key={course.id} className="course-card" onClick={course.onClick}>
             <img
               src={course.image}
               alt={course.title}
