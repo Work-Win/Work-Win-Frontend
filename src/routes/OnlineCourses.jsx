@@ -1,18 +1,18 @@
 // Copyright ©2024 ranalimayadunne, All rights reserved.
 import React from "react";
 import Sidebar from "../components/Sidebar";
-import FeedbackContent from "../components/FeedbackContent";
+import OnlineCoursesContent from "../components/OnlineCoursesContent";
 import "../styles/sidebar.css";
 
-const Feedback = () => {
+const OnlineCourses = () => {
   return (
     <div className="dashboard">
       <Sidebar />
       <div className="dashboard--content">
-        <FeedbackContent />
+        <OnlineCoursesContent />
       </div>
     </div>
   );
 };
 
-export default Feedback;
+export default OnlineCourses;

@@ -1,3 +1,4 @@
+// Copyright ©2024 ranalimayadunne, All rights reserved.
 import React, { useEffect, useState } from "react";
 import HeatmapCalendar from "./HeatmapCalendar";
 
@@ -44,7 +45,7 @@ const Heatmap = () => {
         .then((data) => {
           setActivityData(data.userActivity);
           setRank(2); // Assume API returns rank
-          setPoints(542); // Set the points
+          setPoints(460); // Set the points
         })
         .catch((err) =>
           console.error("There has been an error while fetching data ", err)

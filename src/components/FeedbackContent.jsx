@@ -1,4 +1,4 @@
-// Copyright ©2024 SachinAkash01, All rights reserved.
+// Copyright ©2024 ranalimayadunne, All rights reserved.
 import React, { useState } from "react";
 import axios from "axios";
 import Logo from "../assets/work&win.png";
