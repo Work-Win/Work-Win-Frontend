@@ -1,4 +1,4 @@
-// Copyright ©2024 SachinAkash01, All rights reserved.
+// Copyright ©2024 ranalimayadunne, All rights reserved.
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../assets/work&win.png";

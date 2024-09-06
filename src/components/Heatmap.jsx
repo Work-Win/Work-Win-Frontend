@@ -1,3 +1,4 @@
+// Copyright ©2024 ranalimayadunne, All rights reserved.
 import React, { useEffect, useState } from "react";
 import HeatmapCalendar from "./HeatmapCalendar";
 
