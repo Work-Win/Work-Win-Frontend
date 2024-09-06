@@ -10,7 +10,6 @@ const Profile = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [profession, setProfession] = useState("");
-  const [contact, setContact] = useState("");
 
   useEffect(() => {
     const fetchUserData = async () => {
