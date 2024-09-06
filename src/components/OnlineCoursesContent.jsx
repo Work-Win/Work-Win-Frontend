@@ -24,6 +24,7 @@ const FeedbackContent = () => {
       image: Git,
       title: "Git Fundamentals",
       points: 40,
+      completed: false, // Git is incomplete
       onClick: () => navigate("/dashboard/online-courses/git-fundamentals"),
     },
     {
@@ -31,6 +32,7 @@ const FeedbackContent = () => {
       image: Microservices,
       title: "Microservices Architecture",
       points: 30,
+      completed: true, // Completed
       onClick: () =>
         navigate("/dashboard/online-courses/microservices-architecture"),
     },
@@ -39,6 +41,7 @@ const FeedbackContent = () => {
       image: ResponsiveWeb,
       title: "Responsive Web Development",
       points: 80,
+      completed: true, // Completed
       onClick: () => navigate("/dashboard/online-courses/responsive-web"),
     },
     {
@@ -46,6 +49,7 @@ const FeedbackContent = () => {
       image: QAB,
       title: "Quality Assurance Basics",
       points: 20,
+      completed: true, // Completed
       onClick: () => navigate("/dashboard/online-courses/qa-basics"),
     },
     {
@@ -53,6 +57,7 @@ const FeedbackContent = () => {
       image: NetBasics,
       title: "Computer Networking Basics",
       points: 20,
+      completed: true, // Completed
       onClick: () => navigate("/dashboard/online-courses/networking-basics"),
     },
     {
@@ -60,6 +65,7 @@ const FeedbackContent = () => {
       image: CloudArchi,
       title: "Cloud Computing Architecture",
       points: 60,
+      completed: true, // Completed
       onClick: () =>
         navigate("/dashboard/online-courses/cloud-computing-architecture"),
     },
@@ -68,6 +74,7 @@ const FeedbackContent = () => {
       image: OOP,
       title: "Object Oriented Programming",
       points: 100,
+      completed: false, // OOP is incomplete
       onClick: () => navigate("/dashboard/online-courses/oop"),
     },
     {
@@ -75,6 +82,7 @@ const FeedbackContent = () => {
       image: Python,
       title: "Getting started with Python",
       points: 40,
+      completed: true, // Completed
       onClick: () => navigate("/dashboard/online-courses/python"),
     },
     {
@@ -82,6 +90,7 @@ const FeedbackContent = () => {
       image: Security,
       title: "Internet History & Security",
       points: 20,
+      completed: true, // Completed
       onClick: () =>
         navigate("/dashboard/online-courses/internet-history-security"),
     },
@@ -90,6 +99,7 @@ const FeedbackContent = () => {
       image: aws,
       title: "Cloud Computing with AWS",
       points: 100,
+      completed: true, // Completed
       onClick: () => navigate("/dashboard/online-courses/aws"),
     },
     {
@@ -97,6 +107,7 @@ const FeedbackContent = () => {
       image: Java,
       title: "Introduction to Java",
       points: 40,
+      completed: true, // Completed
       onClick: () => navigate("/dashboard/online-courses/java"),
     },
     {
@@ -104,6 +115,7 @@ const FeedbackContent = () => {
       image: Testing,
       title: "Software Testing",
       points: 50,
+      completed: true, // Completed
       onClick: () => navigate("/dashboard/online-courses/software-testing"),
     },
   ];
@@ -135,11 +147,10 @@ const FeedbackContent = () => {
               <div className="course-details">
                 <span
                   className={`status-indicator ${
-                    // Add logic for course completion status if needed
-                    "incomplete"
+                    course.completed ? "completed" : "incomplete"
                   }`}
                 >
-                  {true ? "✔️ Completed" : "❌ Incomplete"}
+                  {course.completed ? "✔️ Completed" : "❌ Incomplete"}
                 </span>
                 <span className="course-points">Points: {course.points}</span>
               </div>
