@@ -44,8 +44,8 @@ const Heatmap = () => {
         .then((res) => res.json())
         .then((data) => {
           setActivityData(data.userActivity);
-          setRank(2); // Assume API returns rank
-          setPoints(460); // Set the points
+          setRank(1); // Assume API returns rank
+          setPoints(500); // Set the points
         })
         .catch((err) =>
           console.error("There has been an error while fetching data ", err)
@@ -119,7 +119,7 @@ const Heatmap = () => {
       <div className="w-full flex flex-col items-center mb-4">
         {/* Title */}
         <h2 className="text-xl font-semibold mb-2" style={{ color: "#035270" }}>
-          Mastery Level
+          Mastery Level: <span style={{ color: "#c6a90c" }}>Trailblazer</span>
         </h2>
         {/* Progress Bar for Skill Rank */}
         <div className="w-full flex justify-center items-center">
