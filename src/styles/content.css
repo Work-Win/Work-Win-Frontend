@@ -536,3 +536,85 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+/* Recommendation Engine */
+.content-recommendation {
+  width: 90%;
+}
+
+.content-header-recommendation {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-title-recommendation {
+  color: #040e2c;
+  font-weight: bold;
+  font-size: x-large;
+}
+
+.recommendation-section {
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 10px;
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.textarea {
+  width: 100%;
+  max-width: 1400px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  margin-left: auto;
+  margin-right: auto;
+  height: 200px;
+}
+
+.recommend-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #0693c9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 1072px;
+}
+
+.recommend-btn:hover {
+  background-color: #5ab3d7;
+}
+
+.recommendations-section {
+  margin-top: 5px;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.recommendations-section div {
+  font-size: 16px;
+  margin-bottom: 10px;
+}

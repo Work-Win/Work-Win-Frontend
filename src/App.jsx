@@ -12,6 +12,7 @@ import GitFundamentals from "./routes/GitFundamentals";
 import Leaderboard from "./routes/Leaderboard";
 import Achievements from "./routes/Achievements";
 import QnAModel from "./routes/QnAModel";
+import RecommendationEngine from "./routes/RecommendationEngine";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -34,6 +35,10 @@ function App() {
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/my-achievements" element={<Achievements />} />
           <Route path="/dashboard/qna-model" element={<QnAModel />} />
+          <Route
+            path="/dashboard/recommendations"
+            element={<RecommendationEngine />}
+          />
         </Routes>
       </Router>
     </>
