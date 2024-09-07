@@ -14,7 +14,7 @@ const services = [
   {
     title: "Q & A",
     icon: <BiSolidConversation />,
-    route: "/dashboard/qna",
+    route: "/dashboard/qna-model",
   },
   {
     title: "Recommendations",
