@@ -1,4 +1,4 @@
-// Copyright ©2024 ranalimayadunne, All rights reserved.
+// Copyright ©2024 , All rights reserved.
 import React from "react";
 import Welcome from "./routes/Welcome";
 import Login from "./routes/Login";
