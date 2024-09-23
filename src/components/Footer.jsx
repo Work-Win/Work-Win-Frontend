@@ -30,7 +30,7 @@ const Footer = () => {
               WORK & WIN
             </h1>
           </div>
-          <p className="py-4">
+          <p className="py-4 landing-text">
             Elevate your IT skills with a gamified platform that makes learning
             engaging, interactive, and tailored to your needs. Experience a new
             era of training where skill development is dynamic and efficient.

@@ -20,7 +20,7 @@ const Hero = () => {
           Accelerate Growth with Modern Learning
         </h1>
         <div className="flex justify-center items-center">
-          <p className="md:text-4xl sm:text-4xl text-xl font-bold py-4">
+          <p className="md:text-4xl sm:text-4xl text-xl font-bold py-4 landing-text">
             Fast, flexible access for
           </p>
           <ReactTyped
