@@ -62,7 +62,6 @@ const Heatmap = () => {
             `http://localhost:3001/api/users/${email}`
           );
           const userData = response.data;
-          console.log(response.data);
           setRank(userData.rank);
           setPoints(userData.highscore);
         }
