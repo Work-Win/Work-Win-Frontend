@@ -1,5 +1,5 @@
 // Copyright ©2024 ranalimayadunne, All rights reserved.
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Git from "../assets/git.jpg";
 import Microservices from "../assets/microservices.png";
@@ -15,7 +15,7 @@ import Java from "../assets/java.jpg";
 import Testing from "../assets/testing.jpg";
 import "../styles/content.css";
 
-const FeedbackContent = () => {
+const OnlineCoursesContent = () => {
   const navigate = useNavigate();
 
   const courses = [
@@ -162,4 +162,4 @@ const FeedbackContent = () => {
   );
 };
 
-export default FeedbackContent;
+export default OnlineCoursesContent;
