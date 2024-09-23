@@ -1,6 +1,8 @@
 // Copyright ©2024 ranalimayadunne, All rights reserved.
 import React, { useEffect, useState } from "react";
 import HeatmapCalendar from "./HeatmapCalendar";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 const Heatmap = () => {
   const [activityData, setActivityData] = useState([]);
@@ -44,12 +46,29 @@ const Heatmap = () => {
         .then((res) => res.json())
         .then((data) => {
           setActivityData(data.userActivity);
-          setRank(1); // Assume API returns rank
-          setPoints(500); // Set the points
+          // setRank(1); // Assume API returns rank
+          // setPoints(500); // Set the points
         })
         .catch((err) =>
           console.error("There has been an error while fetching data ", err)
         );
+    };
+
+    const fetchUserData = async () => {
+      try {
+        const email = Cookies.get("email");
+        if (email) {
+          const response = await axios.get(
+            `http://localhost:3001/api/users/${email}`
+          );
+          const userData = response.data;
+          console.log(response.data);
+          setRank(userData.rank);
+          setPoints(userData.highscore);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
     };
 
     const currentDate = new Date();
@@ -66,9 +85,11 @@ const Heatmap = () => {
     setEndDate(todayDate);
 
     fetchData(); // Initial fetch
-    const intervalId = setInterval(fetchData, 60000); // Update every 60 seconds
+    fetchUserData();
+    const intervalId1 = setInterval(fetchData, 60000); // Update every 60 seconds
+    const intervalId2 = setInterval(fetchUserData, 60000);
 
-    return () => clearInterval(intervalId); // Cleanup interval on component unmount
+    return () => clearInterval(intervalId1, intervalId2); // Cleanup interval on component unmount
   }, []);
 
   // Update progress and status whenever `points` changes
