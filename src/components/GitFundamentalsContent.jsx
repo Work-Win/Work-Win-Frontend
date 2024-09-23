@@ -34,6 +34,31 @@ const GitFundamentalsContent = () => {
     setStep((prevStep) => prevStep - 1);
   };
 
+  // Function to update course status via API
+  const updateCourseStatus = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:3001/api/update-course-status",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ title: "Git Fundamentals", completed: true }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to update course status");
+      }
+
+      const data = await response.json();
+      console.log("Course status updated:", data.message);
+    } catch (error) {
+      console.error("Error updating course status:", error);
+    }
+  };
+
   // Function to update highscore via API
   const updateHighscore = async () => {
     try {
@@ -205,13 +230,14 @@ const GitFundamentalsContent = () => {
               onSubmit={async (percentage) => {
                 if (percentage >= 80) {
                   // Course is completed
-                  await updateHighscore(540); // Update highscore
+                  await updateHighscore(); // Update highscore
                   await updateHeatmap(); // Update heatmap
+                  await updateCourseStatus(); // Update course status
 
                   setModalContent(
                     <>
                       Congratulations! You have passed the
-                      <strong> Git Fundamentals </strong>course!
+                      <strong> Git Fundamentals </strong> course!
                       <br />
                       Your Score: <strong>{percentage}%</strong>
                     </>

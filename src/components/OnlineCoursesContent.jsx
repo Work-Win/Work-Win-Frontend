@@ -1,5 +1,4 @@
-// Copyright ©2024 ranalimayadunne, All rights reserved.
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Git from "../assets/git.jpg";
 import Microservices from "../assets/microservices.png";
@@ -17,111 +16,72 @@ import "../styles/content.css";
 
 const OnlineCoursesContent = () => {
   const navigate = useNavigate();
+  const [courseStatuses, setCourseStatuses] = useState([]);
 
   const courses = [
-    {
-      id: 1,
-      image: Git,
-      title: "Git Fundamentals",
-      points: 40,
-      completed: false, // Git is incomplete
-      onClick: () => navigate("/dashboard/online-courses/git-fundamentals"),
-    },
+    { id: 1, image: Git, title: "Git Fundamentals", points: 40 },
     {
       id: 2,
       image: Microservices,
       title: "Microservices Architecture",
       points: 30,
-      completed: true, // Completed
-      onClick: () =>
-        navigate("/dashboard/online-courses/microservices-architecture"),
     },
     {
       id: 3,
       image: ResponsiveWeb,
       title: "Responsive Web Development",
       points: 80,
-      completed: true, // Completed
-      onClick: () => navigate("/dashboard/online-courses/responsive-web"),
     },
-    {
-      id: 4,
-      image: QAB,
-      title: "Quality Assurance Basics",
-      points: 20,
-      completed: true, // Completed
-      onClick: () => navigate("/dashboard/online-courses/qa-basics"),
-    },
+    { id: 4, image: QAB, title: "Quality Assurance Basics", points: 20 },
     {
       id: 5,
       image: NetBasics,
       title: "Computer Networking Basics",
       points: 20,
-      completed: true, // Completed
-      onClick: () => navigate("/dashboard/online-courses/networking-basics"),
     },
     {
       id: 6,
       image: CloudArchi,
       title: "Cloud Computing Architecture",
       points: 60,
-      completed: true, // Completed
-      onClick: () =>
-        navigate("/dashboard/online-courses/cloud-computing-architecture"),
     },
-    {
-      id: 7,
-      image: OOP,
-      title: "Object Oriented Programming",
-      points: 100,
-      completed: false, // OOP is incomplete
-      onClick: () => navigate("/dashboard/online-courses/oop"),
-    },
-    {
-      id: 8,
-      image: Python,
-      title: "Getting started with Python",
-      points: 40,
-      completed: true, // Completed
-      onClick: () => navigate("/dashboard/online-courses/python"),
-    },
+    { id: 7, image: OOP, title: "Object Oriented Programming", points: 100 },
+    { id: 8, image: Python, title: "Getting started with Python", points: 40 },
     {
       id: 9,
       image: Security,
       title: "Internet History & Security",
       points: 20,
-      completed: true, // Completed
-      onClick: () =>
-        navigate("/dashboard/online-courses/internet-history-security"),
     },
-    {
-      id: 10,
-      image: aws,
-      title: "Cloud Computing with AWS",
-      points: 100,
-      completed: true, // Completed
-      onClick: () => navigate("/dashboard/online-courses/aws"),
-    },
-    {
-      id: 11,
-      image: Java,
-      title: "Introduction to Java",
-      points: 40,
-      completed: true, // Completed
-      onClick: () => navigate("/dashboard/online-courses/java"),
-    },
-    {
-      id: 12,
-      image: Testing,
-      title: "Software Testing",
-      points: 50,
-      completed: true, // Completed
-      onClick: () => navigate("/dashboard/online-courses/software-testing"),
-    },
+    { id: 10, image: aws, title: "Cloud Computing with AWS", points: 100 },
+    { id: 11, image: Java, title: "Introduction to Java", points: 40 },
+    { id: 12, image: Testing, title: "Software Testing", points: 50 },
   ];
+
+  useEffect(() => {
+    const fetchCourseStatuses = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/api/course-status");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setCourseStatuses(data);
+      } catch (error) {
+        console.error("Error fetching course statuses:", error);
+      }
+    };
+
+    fetchCourseStatuses();
+  }, []);
 
   const dashboardNavigate = () => {
     navigate("/dashboard");
+  };
+
+  const getCourseStatus = (title) => {
+    const status = courseStatuses.find((course) => course.title === title);
+    return status ? status.completed : false; // Default to false if not found
   };
 
   return (
@@ -136,7 +96,17 @@ const OnlineCoursesContent = () => {
       </div>
       <div className="course-container">
         {courses.map((course) => (
-          <div key={course.id} className="course-card" onClick={course.onClick}>
+          <div
+            key={course.id}
+            className="course-card"
+            onClick={() =>
+              navigate(
+                `/dashboard/online-courses/${course.title
+                  .toLowerCase()
+                  .replace(/ /g, "-")}`
+              )
+            }
+          >
             <img
               src={course.image}
               alt={course.title}
@@ -147,10 +117,12 @@ const OnlineCoursesContent = () => {
               <div className="course-details">
                 <span
                   className={`status-indicator ${
-                    course.completed ? "completed" : "incomplete"
+                    getCourseStatus(course.title) ? "completed" : "incomplete"
                   }`}
                 >
-                  {course.completed ? "✔️ Completed" : "❌ Incomplete"}
+                  {getCourseStatus(course.title)
+                    ? "✔️ Completed"
+                    : "❌ Incomplete"}
                 </span>
                 <span className="course-points">Points: {course.points}</span>
               </div>
