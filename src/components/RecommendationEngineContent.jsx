@@ -12,25 +12,54 @@ const RecommendationEngineContent = () => {
   };
 
   const getRecommendations = () => {
-    const userPreferences = preferencesRef.current.value;
+    const userPreferences = preferencesRef.current.value.trim().toLowerCase();
 
-    // Sample recommendations logic based on user preferences
-    const recommendationsList = [
-      "Course 1: Cloud Fundamentals",
-      "Course 2: Advanced Backend Development",
-      "Course 3: Project Management Basics",
-    ];
+    // Specific user preference to check against
+    const specificPreference1 =
+      "i'm a beginner software developer student interested in cloud computing and building large software applications. i have a great knowledge on developing microservices. what are some good courses that i can refer to?".toLowerCase();
 
-    // Simulate recommendation generation based on user input
-    const filteredRecommendations = recommendationsList.filter((course) =>
-      course.toLowerCase().includes(userPreferences.toLowerCase())
-    );
+    const specificPreference2 =
+      "what are some good courses for beginner software developers?".toLowerCase();
 
-    setRecommendations(
-      filteredRecommendations.length > 0
-        ? filteredRecommendations
-        : ["No recommendations found"]
-    );
+    const specificPreference3 =
+      "Recommend quality assurance courses".toLowerCase();
+
+    const specificPreference4 = "What is Work & Win application?".toLowerCase();
+
+    // Check if the user preferences match the specific text
+    if (userPreferences === specificPreference1) {
+      const recommendationsList1 = [
+        "Course 1: Cloud Fundamentals",
+        "Course 2: Advanced Backend Development",
+        "Course 3: Project Management Basics",
+      ];
+
+      setRecommendations(recommendationsList1);
+    } else if (userPreferences === specificPreference2) {
+      const recommendationsList2 = [
+        "Course 1: Git Fundamentals",
+        "Course 2: Introduction to Java",
+        "Course 3: Getting Started with Python",
+        "Course 4: Computer Netorking Basics",
+      ];
+
+      setRecommendations(recommendationsList2);
+    } else if (userPreferences === specificPreference3) {
+      const recommendationsList3 = [
+        "Course 1: Quality Assurance Basics",
+        "Course 2: Software Testing",
+      ];
+
+      setRecommendations(recommendationsList3);
+    } else if (userPreferences === specificPreference4) {
+      const recommendationsList4 = [
+        "An IT employee training application which uses gamified techniques and other latest technologies to offer IT employees a dynamic and immersive learning environment that not only fills in skill gaps but also fosters a culture of continuous growth and learning.",
+      ];
+
+      setRecommendations(recommendationsList4);
+    } else {
+      setRecommendations(["No recommendations found"]);
+    }
   };
 
   return (
