@@ -1,14 +1,41 @@
 // Copyright ©2024 ranalimayadunne, All rights reserved.
-import React from "react";
+import React, { useEffect, useState } from "react";
 import GoldMedal from "../assets/gold-medal.png";
 import SilverMedal from "../assets/silver-medal.png";
 import BronzeMedal from "../assets/bronze-medal.png";
+import axios from "axios";
+import Cookies from "js-cookie";
 import "../styles/content.css";
 
 const LeaderboardContent = () => {
+  const [points, setPoints] = useState(0);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const email = Cookies.get("email");
+        if (email) {
+          const response = await axios.get(
+            `http://localhost:3001/api/users/${email}`
+          );
+          const userData = response.data;
+          setPoints(userData.highscore);
+          console.log(points);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+    const intervalId = setInterval(fetchUserData, 60000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   // Fixed data for leaderboard
   const leaderboardData = [
-    { rank: "1", name: "ranali", mastery: "Trailblazer", points: 500 },
+    { rank: "1", name: "ranali", mastery: "Trailblazer", points: points },
     { rank: "2", name: "sachinakash_", mastery: "Trailblazer", points: 460 },
     { rank: "3", name: "chanuli", mastery: "Trailblazer", points: 400 },
     { rank: "4", name: "danul", mastery: "Trailblazer", points: 330 },
