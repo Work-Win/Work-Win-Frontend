@@ -8,6 +8,11 @@
   justify-content: space-between;
 }
 
+.landing-text {
+  color: white;
+  font-weight: lighter;
+}
+
 .header--title {
   color: #040e2c;
   font-weight: bold;

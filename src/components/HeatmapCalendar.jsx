@@ -1,19 +1,8 @@
 // Copyright ©2024 ranalimayadunne, All rights reserved.
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-const HeatmapCalendar = ({ startDate, endDate, today }) => {
-  const [activityData, setActivityData] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:3001/api/user-activity")
-      .then((res) => res.json())
-      .then((data) => setActivityData(data.userActivity))
-      .catch((err) =>
-        console.error("There has been an error while fetching data ", err)
-      );
-  }, []);
-
+const HeatmapCalendar = ({ startDate, endDate, dataValues = [], today }) => {
   let startingDate = new Date(startDate);
   let endingDate = new Date(endDate);
 
@@ -37,10 +26,10 @@ const HeatmapCalendar = ({ startDate, endDate, today }) => {
     }
   );
 
-  const highestValue = activityData?.reduce(
-    (a, b) => Math.max(a, b.count),
-    -Infinity
-  );
+  // Ensure dataValues is an array and handle empty data cases
+  const highestValue = dataValues.length
+    ? dataValues.reduce((a, b) => Math.max(a, b.count), -Infinity)
+    : 0;
 
   const getIntensity = (activityCount) => {
     return highestValue !== 0 ? Number(activityCount / highestValue) : 0;
@@ -73,7 +62,7 @@ const HeatmapCalendar = ({ startDate, endDate, today }) => {
         }
 
         const activityCount =
-          activityData.find((item) => item.date === day)?.count || 0;
+          dataValues.find((item) => item.date === day)?.count || 0;
         const intensity = getIntensity(activityCount);
         const color = getColorFromIntensity(intensity);
 

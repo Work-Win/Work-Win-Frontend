@@ -1,9 +1,9 @@
-// Copyright ©2024 ranalimayadunne, All rights reserved.
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GrChapterNext, GrChapterPrevious } from "react-icons/gr";
 import GitQuizComponent from "./GitQuizComponent";
 import Logo from "../assets/work&win.png";
+import Cookies from "js-cookie";
 import "../styles/content.css";
 
 const GitFundamentalsContent = () => {
@@ -32,6 +32,78 @@ const GitFundamentalsContent = () => {
 
   const handlePrev = () => {
     setStep((prevStep) => prevStep - 1);
+  };
+
+  // Function to update course status via API
+  const updateCourseStatus = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:3001/api/update-course-status",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ title: "Git Fundamentals", completed: true }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to update course status");
+      }
+
+      const data = await response.json();
+      console.log("Course status updated:", data.message);
+    } catch (error) {
+      console.error("Error updating course status:", error);
+    }
+  };
+
+  // Function to update highscore via API
+  const updateHighscore = async () => {
+    try {
+      const email = Cookies.get("email");
+      const response = await fetch(
+        `http://localhost:3001/api/highscore/${email}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ highscore: 540 }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to update highscore");
+      }
+
+      const data = await response.json();
+      console.log("Highscore updated:", data.message);
+    } catch (error) {
+      console.error("Error updating highscore:", error);
+    }
+  };
+
+  // Function to update heatmap via API
+  const updateHeatmap = async () => {
+    try {
+      const response = await fetch(`http://localhost:3001/api/update-heatmap`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update heatmap");
+      }
+
+      const data = await response.json();
+      console.log("Heatmap updated:", data.message);
+    } catch (error) {
+      console.error("Error updating heatmap:", error);
+    }
   };
 
   return (
@@ -155,13 +227,17 @@ const GitFundamentalsContent = () => {
               Quiz: Git Fundamentals
             </h2>
             <GitQuizComponent
-              onSubmit={(percentage) => {
+              onSubmit={async (percentage) => {
                 if (percentage >= 80) {
                   // Course is completed
+                  await updateHighscore(); // Update highscore
+                  await updateHeatmap(); // Update heatmap
+                  await updateCourseStatus(); // Update course status
+
                   setModalContent(
                     <>
                       Congratulations! You have passed the
-                      <strong> Git Fundamentals </strong>course!
+                      <strong> Git Fundamentals </strong> course!
                       <br />
                       Your Score: <strong>{percentage}%</strong>
                     </>
